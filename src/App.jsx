@@ -17,6 +17,7 @@ function App() {
         >
           Learn Solid
         </a>
+        <p>Deploy time!</p>
       </header>
     </div>
   );
