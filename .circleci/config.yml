@@ -30,7 +30,7 @@ jobs:
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
       - run:
           name: Register Deploy with Sleuth
-          command: |
+          command: >-
           curl -X POST \
           'https://app.sleuth.io/api/1/deployments/bergenhemcorp/github-custom/register_deploy' \
             -H 'Content-Type: application/json' \
