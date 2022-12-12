@@ -37,7 +37,7 @@ jobs:
             curl -X POST "https://app.sleuth.io/api/1/deployments/bergenhemcorp/github-custom/register_deploy" \
               -H "Content-Type: application/json" \
               -d "{
-              \"sha\": \"${CIRCLE_SHA1}\",
+              \"sha\": \"$CIRCLE_SHA1\",
               \"environment\": \"production\",
               \"api_key\": \"$SLEUTH_API\"
               }"
