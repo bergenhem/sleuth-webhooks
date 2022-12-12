@@ -34,7 +34,7 @@ jobs:
       - run:
           name: Register Deploy with Sleuth
           command: >
-            curl -X POST "https://app.sleuth.io/api/1/deployments/bergenhemcorp/github-custom/register_deploy" \
+            curl -X POST "https://app.sleuth.io/api/1/deployments/bergenhemcorp/sleuth-webhooks/register_deploy" \
               -H "Content-Type: application/json" \
               -d "{
               \"sha\": \"$CIRCLE_SHA1\",
