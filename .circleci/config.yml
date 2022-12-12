@@ -30,7 +30,7 @@ jobs:
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
       - run:
           name: Check SHA
-          command: echo $CIRCLE_SHA!
+          command: echo $CIRCLE_SHA1
       - run:
           name: Register Deploy with Sleuth
           command: >
@@ -39,7 +39,7 @@ jobs:
               -d "{
               \"sha\": \"${CIRCLE_SHA1}\",
               \"environment\": \"production\",
-              \"api_key\": \"4e07854a53ece429b46707ccd749992f16786360\"
+              \"api_key\": \"$SLEUTH_API\"
               }"
 workflows:
   version: 2
