@@ -23,11 +23,26 @@
   color: #b318f0;
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+/* Original CSS copied from https://codepen.io/mahmudulhrabby/pen/KLRovM */
+.sampleButton {
+  position: relative;
+  width: 125px;
+  height: 40px;
+  background: #ec18b2; /* background color */
+  color: #fff; /* Font color */
+  margin: 10px auto 0 auto;
+  overflow: hidden;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.sampleButton:focus, .sampleButton:active, .sampleButton:visited{
+  outline: none;
+}
+
+.environmentText {
+  color: rgb(128, 128, 128);
 }
