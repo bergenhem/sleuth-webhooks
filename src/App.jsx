@@ -9,7 +9,7 @@ function App() {
           DevOps Testing Sample - Webhook Edition
         </h1>
         <p class={styles.environmentText}>Current Environment: Prod</p>
-        <button class={styles.sampleButton}>Start Errors</button>
+        <button class={styles.sampleButton}>Do Stuff</button>
       </header>
     </div>
   );
