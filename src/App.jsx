@@ -1,5 +1,5 @@
 import styles from './App.module.css';
-import { onMount, createSignal, Switch } from 'solid-js';
+import { createSignal, Switch } from 'solid-js';
 
 const [impactType, setImpactType] = createSignal(null);
 
@@ -52,13 +52,13 @@ function App() {
         <p class={styles.environmentText}>Current Environment: Prod</p>
         <Switch fallback={<p>Something went wrong.</p>}>
           <Match when={impactType() === null}>
-            <button class={styles.sampleButton} onClick={handleImpactClick}>Trigger Impact</button>
+            <button class={styles.triggerButton} onClick={handleImpactClick}>Trigger Impact</button>
           </Match>
           <Match when={impactType() === "resolved"}>
-            <button class={styles.sampleButton} onClick={handleImpactClick}>Trigger Impact</button>
+            <button class={styles.triggerButton} onClick={handleImpactClick}>Trigger Impact</button>
           </Match>
           <Match when={impactType() === "triggered"}>
-            <button class={styles.sampleButton} onClick={handleImpactClick}>Resolve Impact</button>
+            <button class={styles.resolveButton} onClick={handleImpactClick}>Resolve Impact</button>
           </Match>
         </Switch>
       </header>

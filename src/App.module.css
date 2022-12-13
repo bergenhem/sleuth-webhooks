@@ -24,11 +24,11 @@
 }
 
 /* Original CSS copied from https://codepen.io/mahmudulhrabby/pen/KLRovM */
-.sampleButton {
+.triggerButton {
   position: relative;
-  width: 125px;
-  height: 40px;
-  background: #ec18b2; /* background color */
+  width: 250px;
+  height: 50px;
+  background: #ee093f; /* background color */
   color: #fff; /* Font color */
   margin: 10px auto 0 auto;
   overflow: hidden;
@@ -39,7 +39,23 @@
   z-index: 1;
 }
 
-.sampleButton:focus, .sampleButton:active, .sampleButton:visited{
+.resolveButton {
+  position: relative;
+  width: 250px;
+  height: 50px;
+  background: #00b844; /* background color */
+  color: #fff; /* Font color */
+  margin: 10px auto 0 auto;
+  overflow: hidden;
+  font-size: 20px;
+  text-align: center;
+  border: none;
+  cursor: pointer;
+  z-index: 1;
+}
+
+.triggerButton:focus, .triggerButton:active, .triggerButton:visited,
+.resolveButton:focus, .resolveButton:active, .resolveButton:visited {
   outline: none;
 }
 
