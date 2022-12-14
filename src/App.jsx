@@ -4,8 +4,6 @@ import { createSignal, Switch } from 'solid-js';
 const [impactType, setImpactType] = createSignal(null);
 
 const sleuthImpact = async (passedType) => {
-    console.log("Netlify Token using process.env", process.env.VITE_SLEUTH_API);
-
     const sleuthUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + import.meta.env.VITE_SLEUTH_API;
     
     fetch(sleuthUrl, {
