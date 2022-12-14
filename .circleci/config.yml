@@ -29,8 +29,8 @@ jobs:
           name: Deploy to Netlify
           command: ./node_modules/.bin/netlify deploy --site $NETLIFY_SITE_ID --auth $NETLIFY_ACCESS_TOKEN --prod --dir=dist
       - run:
-          name: Check SHA
-          command: echo $CIRCLE_SHA1
+          name: Write env files
+          command: echo "$VITE_SLEUTH_API" > .env
       - run:
           name: Register Deploy with Sleuth
           command: >
