@@ -49,7 +49,7 @@ const handleIncidentClick = (event) => {
 const handleMetricClick = (event) => {
   let metricToPass = 10;
 
-  fetch("./netlify/functions/hello")
+  fetch("./.netlify/functions/hello")
   .then((response) => {
     console.log("netlify response", response);
   });
