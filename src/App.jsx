@@ -1,9 +1,9 @@
 import styles from './App.module.css';
 import { createSignal, Switch } from 'solid-js';
 
-const [impactType, setImpactType] = createSignal(null);
+const [incidentType, setIncidentType] = createSignal(null);
 
-const sleuthImpact = async (passedType) => {
+const sleuthImpactIncident = async (passedType) => {
     const sleuthUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + import.meta.env.VITE_SLEUTH_API;
     
     fetch(sleuthUrl, {
@@ -17,29 +17,29 @@ const sleuthImpact = async (passedType) => {
       })
     })
     .then((response) => {
-      console.log("Response from Sleuth for " + impactType() + " action:", response);
+      console.log("Response from Sleuth for " + incidentType() + " action:", response);
     })
     .catch((error) => {
       console.log("Error when sending request to Sleuth API: ", error);
     });
 };
 
-const handleImpactClick = (event) => {
+const handleIncidentClick = (event) => {
   
   // logic to "toggle" between triggered and resolved.
   // Default should only happen upon initial load and therefore should switch to "triggered"
-  switch(impactType()) {
+  switch(incidentType()) {
     case "triggered":
-      setImpactType("resolved");
+      setIncidentType("resolved");
       break;
     case "resolved":
-      setImpactType("triggered");
+      setIncidentType("triggered");
       break;
     default:
-      setImpactType("triggered");
+      setIncidentType("triggered");
   }
 
-  sleuthImpact(impactType());
+  sleuthImpactIncident(incidentType());
 };
 
 function App() {
@@ -51,14 +51,14 @@ function App() {
         </h1>
         <p class={styles.environmentText}>Current Environment: Prod</p>
         <Switch fallback={<p>Something went wrong.</p>}>
-          <Match when={impactType() === null}>
-            <button class={styles.triggerButton} onClick={handleImpactClick}>Trigger Impact</button>
+          <Match when={incidentType() === null}>
+            <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
           </Match>
-          <Match when={impactType() === "resolved"}>
-            <button class={styles.triggerButton} onClick={handleImpactClick}>Trigger Impact</button>
+          <Match when={incidentType() === "resolved"}>
+            <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
           </Match>
-          <Match when={impactType() === "triggered"}>
-            <button class={styles.resolveButton} onClick={handleImpactClick}>Resolve Impact</button>
+          <Match when={incidentType() === "triggered"}>
+            <button class={styles.resolveButton} onClick={handleIncidentClick}>Resolve Impact</button>
           </Match>
         </Switch>
       </header>
