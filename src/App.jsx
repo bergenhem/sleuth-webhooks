@@ -4,9 +4,9 @@ import { createSignal, Switch } from 'solid-js';
 const [incidentType, setIncidentType] = createSignal(null);
 
 const sleuthImpactIncident = async (passedType) => {
-    const sleuthUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + import.meta.env.VITE_SLEUTH_API;
+    const sleuthImpactIncidentUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + import.meta.env.VITE_SLEUTH_API;
     
-    fetch(sleuthUrl, {
+    fetch(sleuthImpactIncidentUrl, {
       method: "POST",
       mode: "no-cors",
       headers: {
@@ -22,6 +22,28 @@ const sleuthImpactIncident = async (passedType) => {
     .catch((error) => {
       console.log("Error when sending request to Sleuth API: ", error);
     });
+};
+
+const sleuthImpactMetric = async (metric) => {
+  const sleuthImpactMetricUrl = "https://app.sleuth.io/api/1/impact/3654/register_impact";
+
+  fetch(sleuthImpactMetricUrl, {
+    method: "POST",
+    mode: "no-cors",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({
+      value: metric,
+      api_key: import.meta.env.VITE_SLEUTH_API
+    })
+  })
+  .then((response) => {
+    console.log("Response from Sleuth:", response);
+  })
+  .catch((error) => { 
+    console.log("Error from Sleuth: ", error);
+  })
 };
 
 const handleIncidentClick = (event) => {
