@@ -24,26 +24,8 @@ const sleuthImpactIncident = async (passedType) => {
     });
 };
 
-const sleuthImpactMetric = async (metric) => {
-  const sleuthImpactMetricUrl = "https://app.sleuth.io/api/1/impact/3654/register_impact";
+const sleuthImpactMetric = async (passedMetric) => {
 
-  fetch(sleuthImpactMetricUrl, {
-    method: "POST",
-    mode: "no-cors",
-    headers: {
-      "Content-Type": "application/json"
-    },
-    body: JSON.stringify({
-      value: metric,
-      api_key: import.meta.env.VITE_SLEUTH_API
-    })
-  })
-  .then((response) => {
-    console.log("Response from Sleuth:", response);
-  })
-  .catch((error) => { 
-    console.log("Error from Sleuth: ", error);
-  })
 };
 
 const handleIncidentClick = (event) => {
@@ -64,6 +46,17 @@ const handleIncidentClick = (event) => {
   sleuthImpactIncident(incidentType());
 };
 
+const handleMetricClick = (event) => {
+  let metricToPass = 10;
+
+  fetch("./netlify/functions/hello")
+  .then((response) => {
+    console.log("netlify response", response);
+  });
+
+  //sleuthImpactMetric(metricToPass)
+};
+
 function App() {
   return (
     <div class={styles.App}>
@@ -72,17 +65,22 @@ function App() {
           DevOps Testing Sample - Webhook Edition
         </h1>
         <p class={styles.environmentText}>Current Environment: Prod</p>
-        <Switch fallback={<p>Something went wrong.</p>}>
-          <Match when={incidentType() === null}>
-            <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
-          </Match>
-          <Match when={incidentType() === "resolved"}>
-            <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
-          </Match>
-          <Match when={incidentType() === "triggered"}>
-            <button class={styles.resolveButton} onClick={handleIncidentClick}>Resolve Impact</button>
-          </Match>
-        </Switch>
+        <div>
+          <Switch fallback={<p>Something went wrong.</p>}>
+            <Match when={incidentType() === null}>
+              <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
+            </Match>
+            <Match when={incidentType() === "resolved"}>
+              <button class={styles.triggerButton} onClick={handleIncidentClick}>Trigger Impact</button>
+            </Match>
+            <Match when={incidentType() === "triggered"}>
+              <button class={styles.resolveButton} onClick={handleIncidentClick}>Resolve Impact</button>
+            </Match>
+          </Switch>
+        </div>
+        <div>
+          <button class={styles.triggerButton} onClick={handleMetricClick}>Add metric</button>
+        </div>
       </header>
     </div>
   );
