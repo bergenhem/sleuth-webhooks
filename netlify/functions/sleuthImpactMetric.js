@@ -1,25 +1,19 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 
 exports.handler = async (event, context) => {
   let passedMetric = JSON.parse(event.body).value;
   
   const sleuthImpactMetricUrl = "https://app.sleuth.io/api/1/impact/3654/register_impact";
     
-  const sleuthResponse = await fetch(sleuthImpactMetricUrl, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        value: passedMetric,
-        api_key: process.env.VITE_SLEUTH_API
-      })
-    });
+  const sleuthResponse = await axios.post(sleuthImpactMetricUrl,
+    {
+      value: passedMetric,
+      api_key: process.env.VITE_SLEUTH_API
+    },
+    { headers: { "Content-Type": "application/json" } }
+  );
     
-  let responseText = await sleuthResponse.text();
-
-  console.log("responseText", responseText);
+  let responseText = await sleuthResponse.data;
 
   let sleuthStatusCode;
   if(responseText === "Success") {

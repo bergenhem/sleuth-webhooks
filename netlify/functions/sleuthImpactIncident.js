@@ -1,22 +1,16 @@
-import fetch from 'node-fetch';
+import axios from 'axios';
 
 exports.handler = async (event, context) => {
   let triggerType = JSON.parse(event.body).type;
   
   const sleuthImpactIncidentUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + process.env.VITE_SLEUTH_API;
     
-  const sleuthResponse = await fetch(sleuthImpactIncidentUrl, {
-      method: "POST",
-      mode: "cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify({
-        type: triggerType
-      })
-    });
+  const sleuthResponse = await axios.post(sleuthImpactIncidentUrl,
+    { type: triggerType }, 
+    { headers: { "Content-Type": "application/json" } }
+  );
 
-  let responseText = await sleuthResponse.text();
+  let responseText = await sleuthResponse.data;
 
   let sleuthStatusCode;
   if(responseText === "Success") {
