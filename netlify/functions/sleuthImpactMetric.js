@@ -1,20 +1,23 @@
 exports.handler = async (event, context) => {
-  let triggerType = JSON.parse(event.body).type;
+  let passedMetric = JSON.parse(event.body).value;
   
-  const sleuthImpactIncidentUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + process.env.VITE_SLEUTH_API;
+  const sleuthImpactMetricUrl = "https://app.sleuth.io/api/1/impact/3654/register_impact";
     
-  const sleuthResponse = await fetch(sleuthImpactIncidentUrl, {
+  const sleuthResponse = await fetch(sleuthImpactMetricUrl, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json"
       },
       body: JSON.stringify({
-        type: triggerType
+        value: passedMetric,
+        api_key: process.env.VITE_SLEUTH_API
       })
     });
-
+    
   let responseText = await sleuthResponse.text();
+
+  console.log("responseText", responseText);
 
   let sleuthStatusCode;
   if(responseText === "Success") {
