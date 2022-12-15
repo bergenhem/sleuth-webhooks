@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 exports.handler = async (event, context) => {
   let passedMetric = JSON.parse(event.body).value;
   

@@ -1,3 +1,5 @@
+import fetch from 'node-fetch';
+
 exports.handler = async (event, context) => {
   let triggerType = JSON.parse(event.body).type;
   
