@@ -4,14 +4,9 @@ import { createSignal, Switch } from 'solid-js';
 const [incidentType, setIncidentType] = createSignal(null);
 
 const sleuthImpactIncident = async (passedType) => {
-    const sleuthImpactIncidentUrl = "https://app.sleuth.io/api/1/deployments/bergenhemcorp/gitlab-devops/production/pagerduty-webhooks/register_impact/" + import.meta.env.VITE_SLEUTH_API;
-    
-    fetch(sleuthImpactIncidentUrl, {
+    //call out Netlify function to trigger or resolve our incident
+    fetch("./.netlify/functions/sleuthImpactIncident", {
       method: "POST",
-      mode: "no-cors",
-      headers: {
-        "Content-Type": "application/json"
-      },
       body: JSON.stringify({
         type: passedType
       })
