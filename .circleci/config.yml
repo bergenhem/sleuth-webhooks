@@ -39,7 +39,7 @@ jobs:
               -d "{
               \"sha\": \"$CIRCLE_SHA1\",
               \"environment\": \"production\",
-              \"tags\": \"['test-tag']\",
+              \"tags\": \'test-tag\',
               \"api_key\": \"$VITE_SLEUTH_API\"
               }"
 workflows:
