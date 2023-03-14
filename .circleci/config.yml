@@ -40,7 +40,7 @@ jobs:
               \"sha\": \"$CIRCLE_SHA1\",
               \"environment\": \"production\",
               \"tags\": [\"#test-tag\"],
-              "\"links\": "\testlink=http://www.sleuth.io\"
+              "\"links\": "\testlink=http://www.sleuth.io\",
               \"api_key\": \"$VITE_SLEUTH_API\"
               }"
 workflows:
